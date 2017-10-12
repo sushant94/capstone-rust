@@ -5,7 +5,7 @@ use capstone_rust::capstone as cs;
 #[test]
 fn single_instr() {
     let code = vec![0xe9, 0x0c, 0x00, 0x00, 0x00];
-    let dec = cs::Capstone::new(cs::cs_arch::CS_ARCH_X86, cs::cs_mode::CS_MODE_32).unwrap();
+    let dec = cs::Capstone::new(cs::cs_arch::CS_ARCH_X86, cs::CS_MODE_32).unwrap();
 
     let buf = dec.disasm(code.as_slice(), 0, 0).unwrap();
 
@@ -20,7 +20,7 @@ fn single_instr() {
 #[test]
 fn multiple_instr() {
     let code = vec![0x83, 0xc3, 0x02, 0x66, 0xb8, 0x2c, 0x00, 0x55, 0x8d, 0x73, 0x10];
-    let dec = cs::Capstone::new(cs::cs_arch::CS_ARCH_X86, cs::cs_mode::CS_MODE_32).unwrap();
+    let dec = cs::Capstone::new(cs::cs_arch::CS_ARCH_X86, cs::CS_MODE_32).unwrap();
 
     dec.option(cs::cs_opt_type::CS_OPT_DETAIL, cs::cs_opt_value::CS_OPT_ON).unwrap();
 

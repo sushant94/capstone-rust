@@ -225,7 +225,7 @@ impl Instr {
 /// use capstone_rust::capstone as cs;
 /// let code = vec![0x01, 0xc3]; // add ebx, eax
 ///
-/// let dec = cs::Capstone::new(cs::cs_arch::CS_ARCH_X86, cs::cs_mode::CS_MODE_32).unwrap();
+/// let dec = cs::Capstone::new(cs::cs_arch::CS_ARCH_X86, cs::CS_MODE_32).unwrap();
 ///
 /// let buf = dec.disasm(code.as_slice(), 0, 0).unwrap();
 /// let add = buf.get(0).unwrap();
@@ -233,7 +233,7 @@ impl Instr {
 ///     assert_eq!(insn, cs::x86_insn::X86_INS_ADD);
 /// }
 /// ```
-#[derive(PartialEq)]
+#[derive(Debug, PartialEq)]
 pub enum InstrIdArch {
     X86(x86_insn),
     ARM64(arm64_insn),
@@ -256,7 +256,7 @@ pub enum InstrIdArch {
 /// use capstone_rust::capstone as cs;
 /// let code = vec![0x01, 0xc3]; // add ebx, eax
 ///
-/// let dec = cs::Capstone::new(cs::cs_arch::CS_ARCH_X86, cs::cs_mode::CS_MODE_32).unwrap();
+/// let dec = cs::Capstone::new(cs::cs_arch::CS_ARCH_X86, cs::CS_MODE_32).unwrap();
 /// dec.option(cs::cs_opt_type::CS_OPT_DETAIL, cs::cs_opt_value::CS_OPT_ON).unwrap();
 ///
 /// let buf = dec.disasm(code.as_slice(), 0, 0).unwrap();
@@ -439,7 +439,7 @@ impl Capstone {
     /// use capstone_rust::capstone as cs;
     /// let code = vec![0x55, 0x48, 0x8b, 0x05, 0xb8, 0x13, 0x00, 0x00];
     ///
-    /// let dec = cs::Capstone::new(cs::cs_arch::CS_ARCH_X86, cs::cs_mode::CS_MODE_32).unwrap();
+    /// let dec = cs::Capstone::new(cs::cs_arch::CS_ARCH_X86, cs::CS_MODE_32).unwrap();
     /// let buf = dec.disasm(code.as_slice(), 0, 0).unwrap();
     /// for x in buf.iter() {
     ///     println!("{:x}: {} {}", x.address, x.mnemonic, x.op_str);
@@ -449,7 +449,7 @@ impl Capstone {
     /// use capstone_rust::capstone as cs;
     /// let code = vec![0x55, 0x48, 0x8b, 0x05, 0xb8, 0x13, 0x00, 0x00];
     ///
-    /// let dec = cs::Capstone::new(cs::cs_arch::CS_ARCH_X86, cs::cs_mode::CS_MODE_32).unwrap();
+    /// let dec = cs::Capstone::new(cs::cs_arch::CS_ARCH_X86, cs::CS_MODE_32).unwrap();
     /// let buf = dec.disasm(code.as_slice(), 0, 0).unwrap();
     /// assert_eq!(buf.get(0).unwrap().mnemonic, "push");
     /// assert_eq!(buf.get(1).unwrap().mnemonic, "dec");
@@ -480,7 +480,7 @@ impl Capstone {
     /// ```
     /// use capstone_rust::capstone as cs;
     ///
-    /// let dec = cs::Capstone::new(cs::cs_arch::CS_ARCH_X86, cs::cs_mode::CS_MODE_32).unwrap();
+    /// let dec = cs::Capstone::new(cs::cs_arch::CS_ARCH_X86, cs::CS_MODE_32).unwrap();
     /// assert_eq!(dec.reg_name(21).unwrap(), "ebx");
     /// ```
     pub fn reg_name(&self, reg_id: u32) -> Option<&str> {
@@ -508,7 +508,7 @@ impl Capstone {
     /// ```
     /// use capstone_rust::capstone as cs;
     ///
-    /// let dec = cs::Capstone::new(cs::cs_arch::CS_ARCH_X86, cs::cs_mode::CS_MODE_32).unwrap();
+    /// let dec = cs::Capstone::new(cs::cs_arch::CS_ARCH_X86, cs::CS_MODE_32).unwrap();
     /// assert_eq!(dec.group_name(2).unwrap(), "call");
     /// ```
     pub fn group_name(&self, group_id: u32) -> Option<&str> {
