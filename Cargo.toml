@@ -12,7 +12,7 @@ license = "LGPL-3.0"
 build = "build.rs"
 
 [badges]
-travis-ci = { repository = "endeav0r/capstone-rust" }
+travis-ci = { repository = "sushant94/capstone-rust" }
 
 [lib]
 name = "capstone_rust"
