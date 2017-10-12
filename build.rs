@@ -7,8 +7,9 @@ fn main() {
     println!("cargo:rustc-link-lib=capstone");
 
     let bindings = bindgen::Builder::default()
-        .no_unstable_rust()
         .header("src/wrapper.h")
+        .derive_debug(true)
+        .constified_enum("cs_mode")
         .generate()
         .expect("Unable to generate bindings");
 
