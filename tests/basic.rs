@@ -49,7 +49,7 @@ fn multiple_instr() {
 
     let instr4 = buf.get(3).unwrap();
     assert_eq!(instr4.mnemonic, "lea");
-    assert_eq!(instr4.op_str, "esi, dword ptr [ebx + 0x10]");
+    assert_eq!(instr4.op_str, "esi, [ebx + 0x10]");
     assert_eq!(instr4.address, 8);
     assert_eq!(instr4.id, cs::InstrIdArch::X86(cs::x86_insn::X86_INS_LEA));
     assert_eq!(instr4.size, 3);

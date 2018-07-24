@@ -20,7 +20,7 @@ pub const CS_MODE_V8: cs_mode = cs_mode_CS_MODE_V8;
 pub const CS_MODE_MICRO: cs_mode = cs_mode_CS_MODE_MICRO;
 pub const CS_MODE_MIPS3: cs_mode = cs_mode_CS_MODE_MIPS3;
 pub const CS_MODE_MIPS32R6: cs_mode = cs_mode_CS_MODE_MIPS32R6;
-pub const CS_MODE_MIPSGP64: cs_mode = cs_mode_CS_MODE_MIPSGP64;
+// pub const CS_MODE_MIPSGP64: cs_mode = cs_mode_CS_MODE_MIPSGP64;
 pub const CS_MODE_V9: cs_mode = cs_mode_CS_MODE_V9;
 pub const CS_MODE_BIG_ENDIAN: cs_mode = cs_mode_CS_MODE_BIG_ENDIAN;
 pub const CS_MODE_MIPS32: cs_mode = cs_mode_CS_MODE_MIPS32;
@@ -33,9 +33,6 @@ impl cs_x86_op {
     }
     pub fn imm(&self) -> i64 {
         return unsafe { self.__bindgen_anon_1.imm };
-    }
-    pub fn fp(&self) -> f64 {
-        return unsafe { self.__bindgen_anon_1.fp };
     }
     pub fn mem(&self) -> &x86_op_mem {
         return unsafe { &self.__bindgen_anon_1.mem };
@@ -104,7 +101,7 @@ impl cs_ppc_op {
     pub fn reg(&self) -> ppc_reg {
         return unsafe { self.__bindgen_anon_1.reg.into() };
     }
-    pub fn imm(&self) -> i32 {
+    pub fn imm(&self) -> i64 {
         return unsafe { self.__bindgen_anon_1.imm };
     }
     pub fn mem(&self) -> &ppc_op_mem {
@@ -119,7 +116,7 @@ impl cs_sparc_op {
     pub fn reg(&self) -> sparc_reg {
         return unsafe { self.__bindgen_anon_1.reg.into() };
     }
-    pub fn imm(&self) -> i32 {
+    pub fn imm(&self) -> i64 {
         return unsafe { self.__bindgen_anon_1.imm };
     }
     pub fn mem(&self) -> &sparc_op_mem {
@@ -179,9 +176,16 @@ impl From<u32> for arm_reg {
         return unsafe { transmute::<u32, Self>(i) }
     }
 }
+
 impl arm_reg {
     pub fn as_int(&self) -> u32 {
         return unsafe { transmute::<Self, u32>(*self) }
+    }
+}
+
+impl From<i32> for arm_reg {
+    fn from(i: i32) -> Self {
+        return unsafe { transmute::<i32, Self>(i) }
     }
 }
 
