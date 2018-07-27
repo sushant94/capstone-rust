@@ -1,5 +1,5 @@
 dist: trusty
-sudo: required
+sudo: true
 env:
   - LLVM_CONFIG_PATH=/usr/lib/llvm-3.9/bin/llvm-config LIBCLANG_PATH=/usr/lib/x86_64-linux-gnu/ LIBCLANG_STATIC_PATH=/usr/lib/llvm-3.9/lib/ CLANG_PATH=/usr/bin/clang-3.9
 before_install:
@@ -8,9 +8,7 @@ before_install:
   - sudo apt-get -qq update
   - sudo apt-get install -y llvm-3.9-dev libclang-3.9-dev clang-3.9
 install:
-  - wget https://github.com/aquynh/capstone/archive/3.0.4.tar.gz
-  - tar -xzvf 3.0.4.tar.gz
-  - pushd capstone-3.0.4/ && make && sudo make install && popd
+  - git clone https://github.com/aquynh/capstone.git && cd ./capstone && ./make.sh && sudo ./make.sh install && cd ../
 
 language: rust
 rust:

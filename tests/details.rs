@@ -33,9 +33,9 @@ fn operands() {
         let op2 = arch.operands[1];
         let mem = op2.mem();
         assert_eq!(op2.type_, cs::x86_op_type::X86_OP_MEM);
-        assert_eq!(mem.segment, 0);
-        assert_eq!(mem.base, 24);
-        assert_eq!(mem.index, 0);
+        assert_eq!(mem.segment, cs::x86_reg::X86_REG_INVALID);
+        assert_eq!(mem.base, cs::x86_reg::X86_REG_EDX);
+        assert_eq!(mem.index, cs::x86_reg::X86_REG_INVALID);
         assert_eq!(mem.scale, 1);
         assert_eq!(mem.disp, 5);
     }
